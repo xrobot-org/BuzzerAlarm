@@ -16,13 +16,12 @@ repository: https://github.com/xrobot-org/BuzzerAlarm
 #include "app_framework.hpp"
 #include "pwm.hpp"
 
-template <typename HardwareContainer>
 class BuzzerAlarm : public LibXR::Application {
  public:
   // NOLINTNEXTLINE
   enum class NoteName { C = 0, Cs, D, Ds, E, F, Fs, G, Gs, A, As, B };
 
-  BuzzerAlarm(HardwareContainer &hw, LibXR::ApplicationManager &app,
+  BuzzerAlarm(LibXR::HardwareContainer &hw, LibXR::ApplicationManager &app,
               uint32_t alarm_freq, uint32_t alarm_duration,
               uint32_t alarm_delay)
       : alarm_freq_(alarm_freq),
@@ -32,8 +31,7 @@ class BuzzerAlarm : public LibXR::Application {
     app.Register(*this);
 
     auto error_callback = LibXR::Callback<const char *, uint32_t>::Create(
-        [](bool in_isr, BuzzerAlarm<HardwareContainer> *alarm, const char *file,
-           uint32_t line) {
+        [](bool in_isr, BuzzerAlarm *alarm, const char *file, uint32_t line) {
           UNUSED(file);
           UNUSED(line);
 
@@ -53,7 +51,7 @@ class BuzzerAlarm : public LibXR::Application {
   void Play(uint32_t freq, uint32_t duration) {
     pwm_->SetConfig({freq});
     pwm_->Enable();
-    pwm_->SetDutyCycle(0.5);
+    pwm_->SetDutyCycle(0.005);
     LibXR::Thread::Sleep(duration);
     pwm_->Disable();
   }
