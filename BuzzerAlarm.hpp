@@ -30,7 +30,7 @@ class BuzzerAlarm : public LibXR::Application {
         pwm_(hw.template FindOrExit<LibXR::PWM>({"pwm_buzzer"})) {
     app.Register(*this);
 
-    auto error_callback = LibXR::Callback<const char *, uint32_t>::Create(
+    auto error_callback = LibXR::Assert::Callback::Create(
         [](bool in_isr, BuzzerAlarm *alarm, const char *file, uint32_t line) {
           UNUSED(file);
           UNUSED(line);
