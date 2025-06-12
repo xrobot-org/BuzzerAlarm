@@ -1,15 +1,15 @@
 #pragma once
 
 // clang-format off
-/* === MODULE MANIFEST ===
-module_name: BuzzerAlarm
+/* === MODULE MANIFEST V2 ===
 module_description: 无源蜂鸣器报警模块 / Buzzer alarm module
 constructor_args:
   - alarm_freq: 1500
   - alarm_duration: 300
   - alarm_delay: 300
+template_args: []
 required_hardware: pwm_buzzer
-repository: https://github.com/xrobot-org/BuzzerAlarm
+depends: []
 === END MANIFEST === */
 // clang-format on
 
