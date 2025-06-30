@@ -42,7 +42,7 @@ class BuzzerAlarm : public LibXR::Application {
         },
         this);
 
-    LibXR::Assert::RegisterFatalErrorCB(error_callback);
+    LibXR::Assert::RegisterFatalErrorCallback(error_callback);
     PlayNote(NoteName::B, 4, 200);
     PlayNote(NoteName::G, 3, 200);
     PlayNote(NoteName::B, 4, 400);
@@ -57,9 +57,10 @@ class BuzzerAlarm : public LibXR::Application {
   }
 
   void PlayNote(NoteName note, uint32_t octave, uint32_t duration) {
-    float midi_num = static_cast<int>(note) + (octave + 1) * 12;
-    float freq = 440.0f * std::pow(2.0f, (midi_num - 69) / 12.0f);
-    Play(freq, duration);
+    int midi_num = static_cast<int>(note) + static_cast<int>((octave + 1) * 12);
+    float freq =
+        440.0f * std::pow(2.0f, (static_cast<float>(midi_num) - 69.0f) / 12.0f);
+    Play(static_cast<uint32_t>(freq), static_cast<uint32_t>(duration));
   }
 
   void OnMonitor() override {}
