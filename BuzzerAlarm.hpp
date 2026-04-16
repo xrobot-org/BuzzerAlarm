@@ -102,7 +102,6 @@ class BuzzerAlarm : public LibXR::Application {
   uint32_t alarm_freq_;
   uint32_t alarm_duration_;
   uint32_t alarm_delay_;
-  LibXR::Thread thread_;
 
   LibXR::PWM* pwm_;
 };
