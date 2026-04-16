@@ -13,11 +13,8 @@ depends: []
 === END MANIFEST === */
 // clang-format on
 
-#include <cstdint>
-
 #include "app_framework.hpp"
 #include "pwm.hpp"
-#include "thread.hpp"
 
 /**
  * @brief 无源蜂鸣器报警模块
