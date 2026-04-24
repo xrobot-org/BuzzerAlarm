@@ -21,7 +21,7 @@ class BuzzerAlarm : public LibXR::Application {
   // NOLINTNEXTLINE
   enum class NoteName { C = 0, Cs, D, Ds, E, F, Fs, G, Gs, A, As, B };
 
-  BuzzerAlarm(LibXR::HardwareContainer &hw, LibXR::ApplicationManager &app,
+  BuzzerAlarm(LibXR::HardwareContainer& hw, LibXR::ApplicationManager& app,
               uint32_t alarm_freq, uint32_t alarm_duration,
               uint32_t alarm_delay)
       : alarm_freq_(alarm_freq),
@@ -31,7 +31,7 @@ class BuzzerAlarm : public LibXR::Application {
     app.Register(*this);
 
     auto error_callback = LibXR::Assert::Callback::Create(
-        [](bool in_isr, BuzzerAlarm *alarm, const char *file, uint32_t line) {
+        [](bool in_isr, BuzzerAlarm* alarm, const char* file, uint32_t line) {
           UNUSED(file);
           UNUSED(line);
 
@@ -70,5 +70,5 @@ class BuzzerAlarm : public LibXR::Application {
   uint32_t alarm_duration_;
   uint32_t alarm_delay_;
 
-  LibXR::PWM *pwm_;
+  LibXR::PWM* pwm_;
 };
