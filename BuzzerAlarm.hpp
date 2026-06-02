@@ -30,19 +30,18 @@ class BuzzerAlarm : public LibXR::Application {
         pwm_(hw.template FindOrExit<LibXR::PWM>({"pwm_buzzer"})) {
     app.Register(*this);
 
-    auto error_callback = LibXR::Assert::Callback::Create(
-        [](bool in_isr, BuzzerAlarm* alarm, const char* file, uint32_t line) {
-          UNUSED(file);
-          UNUSED(line);
+    LibXR::Assert::RegisterFatalErrorCallback(
+        LibXR::Callback<const char*, uint32_t>::Create(
+            [](bool in_isr, BuzzerAlarm* alarm, const char* file, uint32_t line) {
+              UNUSED(file);
+              UNUSED(line);
 
-          alarm->Play(alarm->alarm_freq_, alarm->alarm_duration_);
-          if (!in_isr) {
-            LibXR::Thread::Sleep(alarm->alarm_delay_);
-          }
-        },
-        this);
-
-    LibXR::Assert::RegisterFatalErrorCallback(error_callback);
+              alarm->Play(alarm->alarm_freq_, alarm->alarm_duration_);
+              if (!in_isr) {
+                LibXR::Thread::Sleep(alarm->alarm_delay_);
+              }
+            },
+            this));
     PlayNote(NoteName::B, 4, 200);
     PlayNote(NoteName::G, 3, 200);
     PlayNote(NoteName::B, 4, 400);
