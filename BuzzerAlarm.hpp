@@ -33,12 +33,15 @@ class BuzzerAlarm
     B
   };
 
-  BuzzerAlarm(LibXR::PWM& external_pwm_buzzer, uint32_t alarm_freq,
-              uint32_t alarm_duration, uint32_t alarm_delay)
+  BuzzerAlarm(
+      LibXR::PWM& pwm,
+      uint32_t alarm_freq = 1500,
+      uint32_t alarm_duration = 300,
+      uint32_t alarm_delay = 300)
       : alarm_freq_(alarm_freq),
         alarm_duration_(alarm_duration),
         alarm_delay_(alarm_delay),
-        pwm_(std::addressof(external_pwm_buzzer))
+        pwm_(std::addressof(pwm))
   {
     LibXR::Assert::RegisterFatalErrorCallback(
         LibXR::Callback<const char*, uint32_t>::Create(
