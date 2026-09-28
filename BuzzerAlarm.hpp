@@ -78,8 +78,6 @@ class BuzzerAlarm
     Play(static_cast<uint32_t>(freq), static_cast<uint32_t>(duration));
   }
 
-  void OnMonitor() {}
-
  private:
   uint32_t alarm_freq_;
   uint32_t alarm_duration_;
