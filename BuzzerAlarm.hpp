@@ -2,7 +2,7 @@
 
 // clang-format off
 /* === MODULE MANIFEST V2 ===
-module_description: 无源蜂鸣器报警模块 / Buzzer alarm module
+module_description: 无源蜂鸣器开机提示音与致命错误报警模块 / Passive buzzer Module for a start-up tune and fatal-error alarms
 depends: []
 === END MANIFEST === */
 // clang-format on
