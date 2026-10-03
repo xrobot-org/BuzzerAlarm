@@ -97,7 +97,7 @@ class BuzzerAlarm
    */
   void Play(uint32_t freq, uint32_t duration)
   {
-    pwm_->SetConfig({freq});
+    pwm_->SetConfig({.frequency = freq});
     pwm_->Enable();
     pwm_->SetDutyCycle(0.005);
     LibXR::Thread::Sleep(duration);
