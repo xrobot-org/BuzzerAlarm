@@ -7,6 +7,7 @@ depends: []
 === END MANIFEST === */
 // clang-format on
 
+#include <cmath>
 #include <memory>
 
 #include "libxr_def.hpp"
